@@ -1,7 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import midia1 from "@/assets/midia_1.png";
+import midia2 from "@/assets/midia_2.png";
+import midia3 from "@/assets/midia_3.jpg";
+import midia4 from "@/assets/midia_4.png";
+import midia5 from "@/assets/midia_5.png";
+import midia6 from "@/assets/midia_6.png";
+import midia7 from "@/assets/midia_7.jpg";
+import midia8 from "@/assets/midia_8.png";
+import midia9 from "@/assets/midia_9.png";
+import midia10 from "@/assets/midia_10.png";
 
 const Hero = () => {
+  const images = [midia1, midia2, midia3, midia4, midia5, midia6, midia7, midia8, midia9, midia10];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -14,21 +36,23 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Image Carousel Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="https://cdn.pixabay.com/video/2022/11/07/138447-768884583_large.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 bg-black/60" />
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={image}
+              alt={`ROBOMAQ produto ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* Content */}
