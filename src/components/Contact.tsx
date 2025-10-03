@@ -34,17 +34,17 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Entre em contato</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Entre em contato</h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Estamos prontos para atender suas necessidades e desenvolver soluções personalizadas
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
-          <div className="space-y-6">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12">
+          <div className="space-y-4 md:space-y-6">
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               const content = info.link ? (
@@ -52,22 +52,22 @@ const Contact = () => {
                   href={info.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary hover:underline text-sm md:text-base break-words"
                 >
                   {info.content}
                 </a>
               ) : (
-                <span className="text-muted-foreground">{info.content}</span>
+                <span className="text-muted-foreground text-sm md:text-base">{info.content}</span>
               );
 
               return (
                 <Card key={index} className="border-2 hover:border-primary transition-colors">
-                  <CardContent className="p-6 flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-primary" />
+                  <CardContent className="p-4 md:p-6 flex items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-bold mb-1">{info.title}</h3>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold mb-1 text-sm md:text-base">{info.title}</h3>
                       {content}
                     </div>
                   </CardContent>
@@ -76,7 +76,7 @@ const Contact = () => {
             })}
           </div>
 
-          <div className="h-[400px] lg:h-auto rounded-lg overflow-hidden shadow-lg">
+          <div className="h-[300px] sm:h-[400px] lg:h-auto rounded-lg overflow-hidden shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.0!2d-48.0!3d-26.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDAyJzAwLjAiUyA0OMKwMDAnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
               width="100%"

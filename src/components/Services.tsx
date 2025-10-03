@@ -26,16 +26,16 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-muted/30">
+    <section id="services" className="py-16 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Nossos serviços</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Nossos serviços</h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Soluções completas em engenharia para automação e otimização de processos industriais
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -43,14 +43,14 @@ const Services = () => {
                 key={index}
                 className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg"
               >
-                <CardHeader>
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-8 h-8 text-primary" />
+                <CardHeader className="p-4 md:p-6">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                    <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" />
                   </div>
-                  <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  <CardTitle className="text-lg md:text-2xl">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base leading-relaxed">
+                <CardContent className="p-4 md:p-6 pt-0">
+                  <CardDescription className="text-sm md:text-base leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardContent>
