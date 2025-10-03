@@ -11,9 +11,11 @@ import midia7 from "@/assets/midia_7.jpg";
 import midia8 from "@/assets/midia_8.png";
 import midia9 from "@/assets/midia_9.png";
 import midia10 from "@/assets/midia_10.png";
+import midia11 from "@/assets/midia_11.png";
+import midia12 from "@/assets/midia_12.png";
 
 const Hero = () => {
-  const images = [midia1, midia2, midia3, midia4, midia5, midia6, midia7, midia8, midia9, midia10];
+  const images = [midia1, midia2, midia3, midia4, midia5, midia6, midia7, midia8, midia9, midia10, midia11, midia12];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
