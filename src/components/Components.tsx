@@ -59,7 +59,7 @@ const Components = () => {
         </div>
 
         {/* Image Carousel */}
-        <div className="relative h-96 rounded-2xl overflow-hidden mb-16">
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-16 bg-muted">
           {images.map((image, index) => (
             <div
               key={index}
@@ -70,11 +70,11 @@ const Components = () => {
               <img
                 src={image}
                 alt={`Componente ROBOMAQ ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
