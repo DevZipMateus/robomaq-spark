@@ -47,14 +47,14 @@ const Hero = () => {
           </div>
 
           {/* Right Side - Video */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl animate-fade-in max-w-2xl mx-auto" style={{ animationDelay: "0.3s" }}>
             <video
               src="/midia_13.mp4"
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-auto"
             />
           </div>
         </div>
