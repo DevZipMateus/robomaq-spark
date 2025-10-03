@@ -6,22 +6,18 @@ const Products = () => {
   const products = [
     {
       title: "Máscara de robô padrão",
-      image: "https://images.unsplash.com/photo-1581092918484-8313e1f2524e?w=600&h=400&fit=crop",
       description: "Solução completa para automação de processos de injeção plástica",
     },
     {
       title: "Máscara personalizada",
-      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop",
       description: "Desenvolvemos projetos sob medida para atender suas necessidades específicas",
     },
     {
       title: "Sistema de retrofit",
-      image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop",
       description: "Modernização completa de sistemas existentes com tecnologia de ponta",
     },
     {
       title: "Dispositivos de corte",
-      image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=600&h=400&fit=crop",
       description: "Precisão e eficiência no corte de canais de injeção",
     },
   ];
@@ -38,14 +34,7 @@ const Products = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {products.map((product, index) => (
-            <Card key={index} className="overflow-hidden group hover:shadow-xl transition-shadow">
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
+            <Card key={index} className="group hover:shadow-xl transition-shadow">
               <CardHeader>
                 <CardTitle className="text-xl">{product.title}</CardTitle>
               </CardHeader>
