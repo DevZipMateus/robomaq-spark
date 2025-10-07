@@ -1,5 +1,6 @@
-import { Package, Shield, Zap, Settings } from "lucide-react";
+import { Package, Shield, Zap, Settings, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import midia1 from "@/assets/midia_1.png";
 import midia2 from "@/assets/midia_2.png";
 import midia3 from "@/assets/midia_3.jpg";
@@ -103,9 +104,19 @@ const Components = () => {
         </div>
 
         <div className="mt-8 md:mt-12 text-center p-6 md:p-8 bg-card rounded-lg border border-border">
-          <p className="text-sm md:text-lg text-muted-foreground px-4">
+          <p className="text-sm md:text-lg text-muted-foreground px-4 mb-4">
             Para consultar disponibilidade, especificações técnicas e valores, entre em contato com nossa equipe
           </p>
+          <Button asChild size="lg" className="gap-2">
+            <a 
+              href="https://wa.me/5547996294772" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Entrar em contato
+            </a>
+          </Button>
         </div>
       </div>
     </section>
