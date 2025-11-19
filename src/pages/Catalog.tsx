@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Download, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
+import { Download, ZoomIn, ZoomOut } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useState } from 'react';
 
@@ -10,19 +10,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 const Catalog = () => {
   const [numPages, setNumPages] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
-  };
-
-  const goToPrevPage = () => {
-    setPageNumber((prev) => Math.max(prev - 1, 1));
-  };
-
-  const goToNextPage = () => {
-    setPageNumber((prev) => Math.min(prev + 1, numPages));
   };
 
   const zoomIn = () => {
@@ -56,25 +47,9 @@ const Catalog = () => {
               {/* PDF Controls */}
               <div className="bg-muted/50 border-b border-border p-4 flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={goToPrevPage}
-                    disabled={pageNumber <= 1}
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </Button>
                   <span className="text-sm font-medium px-4">
-                    Página {pageNumber} de {numPages || '...'}
+                    {numPages ? `${numPages} páginas` : 'Carregando...'}
                   </span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={goToNextPage}
-                    disabled={pageNumber >= numPages}
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -100,8 +75,8 @@ const Catalog = () => {
                 </div>
               </div>
 
-              {/* PDF Viewer */}
-              <div className="bg-muted/30 p-4 overflow-auto max-h-[800px] flex justify-center">
+              {/* PDF Viewer - Vertical Scroll */}
+              <div className="bg-muted/30 p-4 overflow-auto max-h-[800px]">
                 <Document
                   file="/catalogo-robomaq-2025.pdf"
                   onLoadSuccess={onDocumentLoadSuccess}
@@ -123,14 +98,18 @@ const Catalog = () => {
                       </Button>
                     </div>
                   }
+                  className="flex flex-col items-center gap-4"
                 >
-                  <Page
-                    pageNumber={pageNumber}
-                    scale={scale}
-                    renderTextLayer={true}
-                    renderAnnotationLayer={true}
-                    className="shadow-lg"
-                  />
+                  {Array.from(new Array(numPages), (_, index) => (
+                    <Page
+                      key={`page_${index + 1}`}
+                      pageNumber={index + 1}
+                      scale={scale}
+                      renderTextLayer={true}
+                      renderAnnotationLayer={true}
+                      className="shadow-lg"
+                    />
+                  ))}
                 </Document>
               </div>
             </div>
