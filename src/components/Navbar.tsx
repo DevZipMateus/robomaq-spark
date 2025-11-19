@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -13,6 +16,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const scrollToSection = (id: string) => {
+    if (!isHomePage) {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -41,6 +48,9 @@ const Navbar = () => {
     label: "Componentes",
     id: "components"
   }, {
+    label: "Catálogo",
+    href: "/catalogo"
+  }, {
     label: "Contato",
     id: "contact"
   }];
@@ -52,10 +62,27 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8">
-          {navItems.map(item => <button key={item.id} onClick={() => scrollToSection(item.id)} className="text-white/90 hover:text-white font-medium transition-colors relative group">
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-            </button>)}
+          {navItems.map(item => 
+            item.href ? (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="text-white/90 hover:text-white font-medium transition-colors relative group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </Link>
+            ) : (
+              <button 
+                key={item.id} 
+                onClick={() => scrollToSection(item.id!)} 
+                className="text-white/90 hover:text-white font-medium transition-colors relative group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </button>
+            )
+          )}
         </div>
 
         <Button onClick={() => scrollToSection("contact")} className="hidden lg:flex bg-primary hover:bg-primary/90 text-white">
@@ -71,9 +98,26 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && <div className="lg:hidden bg-black/98 backdrop-blur-md border-t border-white/10">
           <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-            {navItems.map(item => <button key={item.id} onClick={() => scrollToSection(item.id)} className="text-white/90 hover:text-white font-medium text-left py-2 transition-colors">
-                {item.label}
-              </button>)}
+            {navItems.map(item =>
+              item.href ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white/90 hover:text-white font-medium text-left py-2 transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button 
+                  key={item.id} 
+                  onClick={() => scrollToSection(item.id!)} 
+                  className="text-white/90 hover:text-white font-medium text-left py-2 transition-colors"
+                >
+                  {item.label}
+                </button>
+              )
+            )}
             <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 text-white w-full">
               Fale conosco
             </Button>
