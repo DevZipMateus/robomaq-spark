@@ -16,7 +16,7 @@ const Catalog = () => {
                 Confira nosso catálogo completo de produtos e soluções em automação industrial
               </p>
               <Button asChild className="gap-2">
-                <a href="/Catalogo-Robomaq-2025.pdf" download>
+                <a href="/Catálogo%20Robomaq%202025%20Ed%20nº%202%20%20(1).pdf" download>
                   <Download className="w-4 h-4" />
                   Baixar Catálogo PDF
                 </a>
@@ -25,14 +25,14 @@ const Catalog = () => {
             
             <div className="bg-card rounded-lg shadow-lg overflow-hidden">
               <iframe
-                src="file:///home/ramal421/Downloads/Catálogo Robomaq 2025 Ed nº 2  (1).pdf"
+                src="/Catálogo%20Robomaq%202025%20Ed%20nº%202%20%20(1).pdf"
                 width="100%"
                 height="800px"
                 style={{ border: "none" }}
                 title="Catálogo Robomaq 2025"
               >
                 <p>Seu navegador não suporta visualização de PDFs. 
-                  <a href="file:///home/ramal421/Downloads/Catálogo Robomaq 2025 Ed nº 2  (1).pdf" download>Clique aqui para baixar o catálogo</a>
+                  <a href="/Catálogo%20Robomaq%202025%20Ed%20nº%202%20%20(1).pdf" download>Clique aqui para baixar o catálogo</a>
                 </p>
               </iframe>
             </div>
