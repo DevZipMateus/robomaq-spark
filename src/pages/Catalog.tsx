@@ -25,14 +25,14 @@ const Catalog = () => {
             
             <div className="bg-card rounded-lg shadow-lg overflow-hidden">
               <iframe
-                src="/Catalogo-Robomaq-2025.pdf"
+                src="file:///home/ramal421/Downloads/Catálogo Robomaq 2025 Ed nº 2  (1).pdf"
                 width="100%"
                 height="800px"
                 style={{ border: "none" }}
                 title="Catálogo Robomaq 2025"
               >
                 <p>Seu navegador não suporta visualização de PDFs. 
-                  <a href="/Catalogo-Robomaq-2025.pdf" download>Clique aqui para baixar o catálogo</a>
+                  <a href="file:///home/ramal421/Downloads/Catálogo Robomaq 2025 Ed nº 2  (1).pdf" download>Clique aqui para baixar o catálogo</a>
                 </p>
               </iframe>
             </div>
