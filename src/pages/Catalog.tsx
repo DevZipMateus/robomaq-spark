@@ -98,17 +98,19 @@ const Catalog = () => {
                       </Button>
                     </div>
                   }
-                  className="flex flex-col items-center gap-4"
+                  className="flex flex-col items-center gap-2"
                 >
                   {Array.from(new Array(numPages), (_, index) => (
-                    <Page
-                      key={`page_${index + 1}`}
-                      pageNumber={index + 1}
-                      scale={scale}
-                      renderTextLayer={true}
-                      renderAnnotationLayer={true}
-                      className="shadow-lg"
-                    />
+                    <div key={`page_${index + 1}`} className="mb-2">
+                      <Page
+                        pageNumber={index + 1}
+                        scale={scale}
+                        renderTextLayer={false}
+                        renderAnnotationLayer={false}
+                        loading=""
+                        className="shadow-lg"
+                      />
+                    </div>
                   ))}
                 </Document>
               </div>
