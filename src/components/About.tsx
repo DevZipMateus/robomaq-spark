@@ -10,6 +10,7 @@ import about2 from "@/assets/about_2.jpg";
 import about3 from "@/assets/about_3.jpg";
 import about4 from "@/assets/about_4.jpg";
 import about5 from "@/assets/about_5.jpg";
+import about6 from "@/assets/about_6.jpg";
 
 const About = () => {
   const stats = [
@@ -18,7 +19,7 @@ const About = () => {
     { icon: Award, label: "Anos de experiência", value: "10+" },
   ];
 
-  const images = [about1, about2, about3, about4, about5];
+  const images = [about1, about2, about3, about4, about5, about6];
 
   return (
     <section id="about" className="py-16 md:py-24 bg-background">
