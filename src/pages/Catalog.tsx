@@ -23,8 +23,12 @@ const Catalog = () => {
     `;
     document.head.appendChild(style);
     
+    // Lock page scroll and hide scrollbar
+    document.body.style.overflow = 'hidden';
+    
     return () => {
       document.head.removeChild(style);
+      document.body.style.overflow = '';
     };
   }, []);
 
