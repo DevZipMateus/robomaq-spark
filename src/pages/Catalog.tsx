@@ -50,11 +50,7 @@ const Catalog = () => {
       <main className="flex-1 flex flex-col pt-20 overflow-hidden">
         <div className="container mx-auto px-4 flex-1 flex flex-col overflow-hidden">
           <div className="max-w-6xl mx-auto flex-1 flex flex-col overflow-hidden">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold mb-4">Catálogo Robomaq 2025</h1>
-              <p className="text-muted-foreground mb-6">
-                Confira nosso catálogo completo de produtos e soluções em automação industrial
-              </p>
+            <div className="text-center mb-6">
               <Button asChild className="gap-2">
                 <a href="/catalogo-robomaq-2025.pdf" download>
                   <Download className="w-4 h-4" />
