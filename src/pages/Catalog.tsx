@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Download, ZoomIn, ZoomOut } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -10,6 +10,23 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 const Catalog = () => {
   const [numPages, setNumPages] = useState<number>(0);
   const [scale, setScale] = useState<number>(1.0);
+
+  useEffect(() => {
+    // Hide Lovable badge on this page
+    const style = document.createElement('style');
+    style.textContent = `
+      [data-lovable-badge],
+      a[href*="lovable.app"],
+      a[href*="lovable.dev"] {
+        display: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
