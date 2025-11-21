@@ -76,7 +76,7 @@ const Catalog = () => {
               </div>
 
               {/* PDF Viewer - Vertical Scroll */}
-              <div className="bg-muted/30 p-4 overflow-auto max-h-[800px]">
+              <div className="bg-muted/30 p-2 overflow-auto max-h-[800px]">
                 <Document
                   file="/catalogo-robomaq-2025.pdf"
                   onLoadSuccess={onDocumentLoadSuccess}
@@ -98,19 +98,18 @@ const Catalog = () => {
                       </Button>
                     </div>
                   }
-                  className="flex flex-col items-center gap-2"
+                  className="flex flex-col items-center"
                 >
                   {Array.from(new Array(numPages), (_, index) => (
-                    <div key={`page_${index + 1}`} className="mb-2">
-                      <Page
-                        pageNumber={index + 1}
-                        scale={scale}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                        loading=""
-                        className="shadow-lg"
-                      />
-                    </div>
+                    <Page
+                      key={`page_${index + 1}`}
+                      pageNumber={index + 1}
+                      scale={scale}
+                      renderTextLayer={false}
+                      renderAnnotationLayer={false}
+                      loading=""
+                      className="shadow-sm"
+                    />
                   ))}
                 </Document>
               </div>
