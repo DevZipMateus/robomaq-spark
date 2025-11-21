@@ -15,11 +15,9 @@ const Catalog = () => {
     // Set initial scale based on screen size
     const setInitialScale = () => {
       if (window.innerWidth < 640) {
-        setScale(0.5); // Mobile
-      } else if (window.innerWidth < 1024) {
-        setScale(0.7); // Tablet
+        setScale(0.5); // Mobile - smaller for better fit
       } else {
-        setScale(1.0); // Desktop
+        setScale(1.0); // Tablet and Desktop - original size
       }
     };
     
