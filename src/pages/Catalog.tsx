@@ -60,10 +60,10 @@ const Catalog = () => {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Navbar />
-      <main className="flex-1 flex flex-col pt-16 sm:pt-20 overflow-hidden">
+      <main className="flex-1 flex flex-col pt-20 md:pt-24 overflow-hidden">
         <div className="container mx-auto px-2 sm:px-4 flex-1 flex flex-col overflow-hidden">
           <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col overflow-hidden">
-            <div className="text-center mb-3 sm:mb-4 md:mb-6">
+            <div className="text-center mb-4 sm:mb-6 pt-2">
               <Button asChild className="gap-2 text-xs sm:text-sm">
                 <a href="/catalogo-robomaq-2025.pdf" download>
                   <Download className="w-3 h-3 sm:w-4 sm:h-4" />
