@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Download, ZoomIn, ZoomOut } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 // Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -10,6 +11,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 const Catalog = () => {
   const [numPages, setNumPages] = useState<number>(0);
   const [scale, setScale] = useState<number>(1.0);
+  const [visiblePages, setVisiblePages] = useState<Set<number>>(new Set([1, 2, 3]));
+  const observerRefs = useRef<Map<number, IntersectionObserver>>(new Map());
 
   useEffect(() => {
     // Set initial scale based on screen size
@@ -42,12 +45,40 @@ const Catalog = () => {
       document.head.removeChild(style);
       document.body.style.overflow = '';
       window.removeEventListener('resize', setInitialScale);
+      observerRefs.current.forEach(observer => observer.disconnect());
     };
   }, []);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
+
+  const setupObserver = useCallback((element: HTMLDivElement | null, pageNumber: number) => {
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisiblePages((prev) => {
+              const newSet = new Set(prev);
+              // Load current page and 2 neighbors
+              newSet.add(pageNumber);
+              newSet.add(pageNumber - 1);
+              newSet.add(pageNumber + 1);
+              newSet.add(pageNumber - 2);
+              newSet.add(pageNumber + 2);
+              return newSet;
+            });
+          }
+        });
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(element);
+    observerRefs.current.set(pageNumber, observer);
+  }, []);
 
   const zoomIn = () => {
     setScale((prev) => Math.min(prev + 0.2, 2.0));
@@ -107,14 +138,15 @@ const Catalog = () => {
                 </div>
               </div>
 
-              {/* PDF Viewer - Vertical Scroll */}
+              {/* PDF Viewer - Lazy Loaded Vertical Scroll */}
               <div className="bg-muted/30 p-1 sm:p-2 overflow-auto flex-1">
                 <Document
                   file="/catalogo-robomaq-2025.pdf"
                   onLoadSuccess={onDocumentLoadSuccess}
                   loading={
-                    <div className="flex items-center justify-center p-8">
+                    <div className="flex flex-col items-center justify-center p-8 gap-4">
                       <div className="text-muted-foreground">Carregando catálogo...</div>
+                      <Skeleton className="w-[595px] h-[842px] max-w-full" />
                     </div>
                   }
                   error={
@@ -130,19 +162,40 @@ const Catalog = () => {
                       </Button>
                     </div>
                   }
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center gap-2"
                 >
-                  {Array.from(new Array(numPages), (_, index) => (
-                    <Page
-                      key={`page_${index + 1}`}
-                      pageNumber={index + 1}
-                      scale={scale}
-                      renderTextLayer={false}
-                      renderAnnotationLayer={false}
-                      loading=""
-                      className="shadow-sm"
-                    />
-                  ))}
+                  {Array.from(new Array(numPages), (_, index) => {
+                    const pageNumber = index + 1;
+                    const shouldRender = visiblePages.has(pageNumber);
+                    
+                    return (
+                      <div
+                        key={`page_${pageNumber}`}
+                        ref={(el) => setupObserver(el, pageNumber)}
+                        className="flex justify-center"
+                      >
+                        {shouldRender ? (
+                          <Page
+                            pageNumber={pageNumber}
+                            scale={scale}
+                            renderTextLayer={false}
+                            renderAnnotationLayer={false}
+                            loading={<Skeleton className="w-[595px] h-[842px] max-w-full" />}
+                            className="shadow-sm"
+                          />
+                        ) : (
+                          <Skeleton 
+                            className="shadow-sm" 
+                            style={{ 
+                              width: `${595 * scale}px`, 
+                              height: `${842 * scale}px`,
+                              maxWidth: '100%'
+                            }} 
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
                 </Document>
               </div>
             </div>
