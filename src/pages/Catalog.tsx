@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Download, ZoomIn, ZoomOut } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -25,11 +24,11 @@ const Catalog = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="h-screen flex flex-col overflow-hidden">
       <Navbar />
-      <main className="pt-20 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+      <main className="flex-1 flex flex-col pt-20 overflow-hidden">
+        <div className="container mx-auto px-4 flex-1 flex flex-col overflow-hidden">
+          <div className="max-w-6xl mx-auto flex-1 flex flex-col overflow-hidden">
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold mb-4">Catálogo Robomaq 2025</h1>
               <p className="text-muted-foreground mb-6">
@@ -43,9 +42,9 @@ const Catalog = () => {
               </Button>
             </div>
             
-            <div className="bg-card rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-card rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
               {/* PDF Controls */}
-              <div className="bg-muted/50 border-b border-border p-4 flex items-center justify-between flex-wrap gap-4">
+              <div className="bg-muted/50 border-b border-border p-4 flex items-center justify-between flex-wrap gap-4 shrink-0">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium px-4">
                     {numPages ? `${numPages} páginas` : 'Carregando...'}
@@ -76,7 +75,7 @@ const Catalog = () => {
               </div>
 
               {/* PDF Viewer - Vertical Scroll */}
-              <div className="bg-muted/30 p-2 overflow-auto max-h-[800px]">
+              <div className="bg-muted/30 p-2 overflow-auto flex-1">
                 <Document
                   file="/catalogo-robomaq-2025.pdf"
                   onLoadSuccess={onDocumentLoadSuccess}
@@ -117,7 +116,6 @@ const Catalog = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
