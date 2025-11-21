@@ -67,22 +67,6 @@ const About = () => {
             </p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={index}
-                className="bg-card rounded-lg p-6 md:p-8 text-center border border-border hover:border-primary transition-colors"
-              >
-                <Icon className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4 text-primary" />
-                <div className="text-3xl md:text-4xl font-bold mb-2">{stat.value}</div>
-                <div className="text-sm md:text-base text-muted-foreground">{stat.label}</div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
