@@ -109,8 +109,8 @@ const Components = () => {
           </p>
           <Button asChild size="lg" className="gap-2">
             <a 
-              href="https://wa.me/5547996294772" 
-              target="_blank" 
+              href="https://wa.me/554792332554" 
+              target="_blank"
               rel="noopener noreferrer"
             >
               <MessageCircle className="w-5 h-5" />

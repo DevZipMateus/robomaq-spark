@@ -11,14 +11,14 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "(47) 99629-4772",
-      link: "https://wa.me/5547996294772",
+      content: "(47) 9233-2554",
+      link: "https://wa.me/554792332554",
     },
     {
       icon: Mail,
       title: "E-mail",
-      content: "lucas.borba@robomaqengenharia.com.br",
-      link: "mailto:lucas.borba@robomaqengenharia.com.br",
+      content: "Lenilson.terres@robomaqengenharia.com.br",
+      link: "mailto:Lenilson.terres@robomaqengenharia.com.br",
     },
     {
       icon: Clock,
