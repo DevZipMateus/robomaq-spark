@@ -19,6 +19,34 @@ const Products = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 mb-8">
             Conheça nossa linha completa de soluções em automação industrial
           </p>
+          
+          <div className="mb-12 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-6 text-foreground">
+              Categorias conforme o catálogo:
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-left">
+              {[
+                "Perfis estruturais",
+                "Tampas de perfil",
+                "Acessórios para fixação",
+                "Suportes para montagem",
+                "Hastes de ventosa",
+                "Ventosas",
+                "Pinças pneumáticas",
+                "Tesouras pneumáticas",
+                "Módulos eletrônicos para sensores",
+                "Chapas de acoplamento de robô"
+              ].map((category, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-3 p-4 bg-background/50 border border-primary/10 rounded-lg hover:border-primary/30 transition-all duration-300 hover:shadow-md"
+                >
+                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-sm md:text-base text-foreground font-medium">{category}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="text-center">
