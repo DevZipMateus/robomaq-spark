@@ -22,7 +22,7 @@ const Products = () => {
         </div>
 
         <div className="text-center">
-          <Link to="/catalog" className="inline-block group">
+          <Link to="/catalogo" className="inline-block group">
             <Button
               size="lg"
               className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white px-10 md:px-14 py-6 md:py-7 text-lg md:text-xl font-semibold shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 relative overflow-hidden"
